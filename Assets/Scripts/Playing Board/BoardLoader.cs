@@ -19,6 +19,6 @@ public class BoardLoader : MonoBehaviour
 
     void loadBoard()
     {
-
+        
     }
 }

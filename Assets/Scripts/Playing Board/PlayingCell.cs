@@ -17,7 +17,6 @@ public class PlayingCell : MonoBehaviour
 
     public List<PlayingCell> neighbors = new List<PlayingCell>(6);
 
-
     private Vector2Int coord;
 
 
