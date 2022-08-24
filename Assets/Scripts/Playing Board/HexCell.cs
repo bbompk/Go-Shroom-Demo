@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayingCell : MonoBehaviour
+public class HexCell : MonoBehaviour
 {
     // ----- Begin static variables ----- //
     
@@ -35,7 +35,7 @@ public class PlayingCell : MonoBehaviour
     // ----- End static variables ----- //
     
     public Vector2Int hexCoord;
-    public List<PlayingCell> neighbors = new List<PlayingCell>(6);
+    public List<HexCell> neighbors = new List<HexCell>(6);
     public GameObject shroom;  // Will be changed to shroom class type later
     public int playerId; // owner of this cell;
 

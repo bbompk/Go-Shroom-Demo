@@ -6,8 +6,11 @@ using System.Text.RegularExpressions;
 
 public class BoardManager : MonoBehaviour
 {
-
-    public TextAsset boardDataFile;
+    [SerializeField]
+    private TextAsset boardDataFile;
+    
+    public Vector2Int boardDimension = new Vector2Int(0 , 0);
+    public List<List<GameObject>> hexBoard = null;
 
     // Start is called before the first frame update
     void Start()
@@ -15,10 +18,7 @@ public class BoardManager : MonoBehaviour
         // See HexBoardData class in BoardParser script
         BoardParser.HexBoardData boardData = BoardParser.parseBoard(boardDataFile);
 
-        foreach (List<int> line in boardData.coords)
-        {
-            Debug.Log(string.Join(" ", line.ToArray()));
-        }
+        generateHexBoard(boardData.max_row, boardData.max_col, boardData.coords);
     }
 
     // Update is called once per frame
@@ -27,7 +27,10 @@ public class BoardManager : MonoBehaviour
         
     }
 
-    
+    public void generateHexBoard(int row, int col, List<List<int>> table)
+    {
+        // gen board
+    }
 
 
 }
