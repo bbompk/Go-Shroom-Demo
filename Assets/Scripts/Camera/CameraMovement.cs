@@ -37,7 +37,6 @@ public class CameraMovement : MonoBehaviour
         {
             transform.position += (transform.right * -1.0f * movementspeed);
         }
-        Debug.Log(transform.forward);
         turnactive = Input.GetMouseButton(1);
 
         if (turnactive)

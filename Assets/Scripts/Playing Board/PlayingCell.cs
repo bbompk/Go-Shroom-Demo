@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class PlayingCell : MonoBehaviour
 {
-
-    public static readonly Dictionary<string, int> Direction = new Dictionary<string, int>()
+    // ----- Begin static variables ----- //
+    
+    public static readonly Dictionary<string, int> DirnMap = new Dictionary<string, int>()
     {
         { "NE", 0 },
         { "E", 1 },
@@ -15,9 +16,30 @@ public class PlayingCell : MonoBehaviour
         { "NW", 5 },
     };
 
-    public List<PlayingCell> neighbors = new List<PlayingCell>(6);
+    public static readonly List<Vector2Int> DirVec = new List<Vector2Int>()
+    {
+        new Vector2Int(-1,  1),
+        new Vector2Int( 0,  2),
+        new Vector2Int( 1,  1),
+        new Vector2Int( 1, -1),
+        new Vector2Int(-2,  0),
+        new Vector2Int(-1, -1),
+    };
 
-    private Vector2Int coord;
+    enum ColorState
+    {
+        Idle,
+        Hover,
+    }
+
+    // ----- End static variables ----- //
+    
+    public Vector2Int hexCoord;
+    public List<PlayingCell> neighbors = new List<PlayingCell>(6);
+    public GameObject shroom;  // Will be changed to shroom class type later
+    public int playerId; // owner of this cell;
+
+    private ColorState colorState = ColorState.Idle;
 
 
     // Start is called before the first frame update
