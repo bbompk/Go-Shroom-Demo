@@ -40,6 +40,8 @@ public class BoardManager : MonoBehaviour
 
     public List<List<HexCell>> generateHexBoard(int row, int col, List<List<int>> table)
     {
+        Debug.Log("Generating Board...");
+
         // gen board
         List<List<HexCell>> board = new List<List<HexCell>>();
         for (int i = 0; i < table.Count; i++)
