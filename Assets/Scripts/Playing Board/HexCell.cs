@@ -34,7 +34,7 @@ public class HexCell : MonoBehaviour
 
     // ----- End static variables ----- //
 
-    public static Vector2Int size = new Vector2Int(10, 10);
+    public static Vector2 size = new Vector2(2.0f, 2.5f);
     public Vector2Int hexCoord;
     public List<HexCell> neighbors = new List<HexCell>(6);
     public GameObject shroom;  // Will be changed to shroom class type later

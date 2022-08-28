@@ -8,6 +8,8 @@ public class BoardManager : MonoBehaviour
 {
     [SerializeField]
     private TextAsset boardDataFile;
+    [SerializeField]
+    private HexCell cellPrefab;
     
     public Vector2Int boardDimension = new Vector2Int(0 , 0);
     public List<List<GameObject>> hexBoard = null;
@@ -63,7 +65,7 @@ public class BoardManager : MonoBehaviour
             if (checkbit != -1) break;
         }
         if (checkbit == -1) return board;
-        int y = checkbit % 2, x = 0,h = HexCell.size[0], w = HexCell.size[1];
+        float y = checkbit % 2, x = 0,h = HexCell.size[0], w = HexCell.size[1];
         checkbit++;
         int last = -1;
         for(int i = 0; i < table.Count; i++)
@@ -75,8 +77,9 @@ public class BoardManager : MonoBehaviour
                 {
                     throw new Exception();
                 }
-                board[i][j] = new HexCell();
-                board[i][j].hexCoord = new Vector2Int((i-x)*h, (j-y)*w/2);
+                board[i][j] = Instantiate(cellPrefab);
+                //board[i][j].hexCoord = new Vector2((i-x)*h, (j-y)*w/2);
+                board[i][j].transform.position = new Vector3((i - x) * h, 0, (j - y) * w / 2);
                 for (int k = 0; k < 6; k++)
                 {
                     if (i + DirVec[k][0] < 0 || j + DirVec[k][1] < 0 || i + DirVec[k][0] > table.Count || j + DirVec[k][1] > col) continue;

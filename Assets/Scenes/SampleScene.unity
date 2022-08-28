@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boardDataFile: {fileID: 4900000, guid: d0ec429a70c18024c8924702c790878f, type: 3}
+  cellPrefab: {fileID: 746266414057933990, guid: 9e6cd648f052540458947d62f992f49e, type: 3}
   boardDimension: {x: 0, y: 0}
 --- !u!4 &152281394
 Transform:
@@ -363,60 +364,3 @@ MonoBehaviour:
   movementspeed: 0.02
   sensitivity: 2
   turn: {x: 0, y: 0}
---- !u!1001 &1651210555
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1394005354973876584, guid: 9e6cd648f052540458947d62f992f49e, type: 3}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1394005354973876584, guid: 9e6cd648f052540458947d62f992f49e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.32
-      objectReference: {fileID: 0}
-    - target: {fileID: 1394005354973876584, guid: 9e6cd648f052540458947d62f992f49e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1394005354973876584, guid: 9e6cd648f052540458947d62f992f49e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 1.7104504
-      objectReference: {fileID: 0}
-    - target: {fileID: 1394005354973876584, guid: 9e6cd648f052540458947d62f992f49e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1394005354973876584, guid: 9e6cd648f052540458947d62f992f49e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1394005354973876584, guid: 9e6cd648f052540458947d62f992f49e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1394005354973876584, guid: 9e6cd648f052540458947d62f992f49e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1394005354973876584, guid: 9e6cd648f052540458947d62f992f49e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1394005354973876584, guid: 9e6cd648f052540458947d62f992f49e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1394005354973876584, guid: 9e6cd648f052540458947d62f992f49e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3129179474063169837, guid: 9e6cd648f052540458947d62f992f49e, type: 3}
-      propertyPath: m_Name
-      value: HexCell (Grass)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9e6cd648f052540458947d62f992f49e, type: 3}
