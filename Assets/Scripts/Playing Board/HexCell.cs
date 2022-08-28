@@ -36,7 +36,10 @@ public class HexCell : MonoBehaviour
 
     public static Vector2 size = new Vector2(2.0f, 2.5f);
     public Vector2Int hexCoord;
-    public List<HexCell> neighbors = new List<HexCell>(6);
+    public List<HexCell> neighbors = new List<HexCell>()
+    {
+        null,null,null,null,null,null
+    };
     public GameObject shroom;  // Will be changed to shroom class type later
     public int playerId; // owner of this cell;
 
