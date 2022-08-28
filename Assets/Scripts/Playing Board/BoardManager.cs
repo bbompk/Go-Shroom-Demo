@@ -12,7 +12,7 @@ public class BoardManager : MonoBehaviour
     private HexCell cellPrefab;
     
     public Vector2Int boardDimension = new Vector2Int(0 , 0);
-    public List<List<GameObject>> hexBoard = null;
+    public List<List<HexCell>> hexBoard = null;
     public static readonly Dictionary<int,Vector2Int> DirVec = new Dictionary<int, Vector2Int>()
     {
         {0, new Vector2Int(-1,  1) },
@@ -29,7 +29,7 @@ public class BoardManager : MonoBehaviour
         // See HexBoardData class in BoardParser script
         BoardParser.HexBoardData boardData = BoardParser.parseBoard(boardDataFile);
 
-        generateHexBoard(boardData.max_row, boardData.max_col, boardData.coords);
+        hexBoard = generateHexBoard(boardData.max_row, boardData.max_col, boardData.coords);
     }
 
     // Update is called once per frame
@@ -101,6 +101,8 @@ public class BoardManager : MonoBehaviour
                 }
             }
         }
+
+        Debug.Log("Board Generated.");
         return board;
     }
 

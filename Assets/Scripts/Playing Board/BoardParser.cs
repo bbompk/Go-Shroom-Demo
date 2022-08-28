@@ -144,7 +144,7 @@ public class BoardParser : MonoBehaviour
         if (!contains_dim) throw new Exception("Board Data parsing error: missing dimensions");
         if (row_count != row) throw new Exception("Board Data parsing error: given row data does not match row dimension");
 
-        Debug.Log("Board Data loaded successfully.");
+        Debug.Log("Board Data compiled successfully.");
         return result;
     }
 }

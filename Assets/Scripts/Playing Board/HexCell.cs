@@ -26,10 +26,11 @@ public class HexCell : MonoBehaviour
         new Vector2Int(-1, -1),
     };
 
-    enum ColorState
+    public enum ColorState
     {
         Idle,
         Hover,
+        Selected,
     }
 
     // ----- End static variables ----- //
@@ -42,19 +43,40 @@ public class HexCell : MonoBehaviour
     };
     public GameObject shroom;  // Will be changed to shroom class type later
     public int playerId; // owner of this cell;
+    public ColorState colorState = ColorState.Idle;
 
-    private ColorState colorState = ColorState.Idle;
-
+    private Material cellMatRef;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        colorState = ColorState.Idle;
+        cellMatRef = gameObject.GetComponentInChildren<MeshRenderer>().material;
     }
 
     // Update is called once per frame
     void Update()
     {
+        switch(colorState)
+        {
+            case ColorState.Idle :
+                {
+                    cellMatRef.SetInteger("_UseTint", 0);
+                    break;
+                }
+            case ColorState.Selected:
+                {
+                    cellMatRef.SetColor("_TintColor", Color.yellow);
+                    cellMatRef.SetInteger("_UseTint", 1);
+                    break;
+                }
+        }
+
         
+    }
+
+    private void OnMouseDown()
+    {
+        colorState = ColorState.Selected;
     }
 }
