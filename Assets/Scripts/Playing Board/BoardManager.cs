@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Unity.Netcode;
 using System.Text.RegularExpressions;
 
-public class BoardManager : MonoBehaviour
+public class BoardManager : NetworkBehaviour
 {
     [SerializeField]
     private TextAsset boardDataFile;
     [SerializeField]
     private HexCell cellPrefab;
-    
+
+    private NetworkVariable<bool> isBoardGenerated = new NetworkVariable<bool>(false);
+
     public Vector2Int boardDimension = new Vector2Int(0 , 0);
     public List<List<HexCell>> hexBoard = null;
     public static readonly Dictionary<int,Vector2Int> DirVec = new Dictionary<int, Vector2Int>()
@@ -26,16 +29,19 @@ public class BoardManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // See HexBoardData class in BoardParser script
-        BoardParser.HexBoardData boardData = BoardParser.parseBoard(boardDataFile);
 
-        hexBoard = generateHexBoard(boardData.max_row, boardData.max_col, boardData.coords);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(IsServer && !isBoardGenerated.Value)
+        {
+            // See HexBoardData class in BoardParser script
+            BoardParser.HexBoardData boardData = BoardParser.parseBoard(boardDataFile);
+            generateHexBoard(boardData.max_row, boardData.max_col, boardData.coords);
+            isBoardGenerated.Value = true;
+        }   
     }
 
     public List<List<HexCell>> generateHexBoard(int row, int col, List<List<int>> table)
@@ -70,7 +76,10 @@ public class BoardManager : MonoBehaviour
         float y = checkbit % 2, x = 0, h = HexCell.size[0], w = HexCell.size[1];
         checkbit++;
         int last;
+
         GameObject boardGO = new GameObject("HexBoard");
+        boardGO.AddComponent<NetworkObject>();
+        boardGO.GetComponent<NetworkObject>().Spawn();
         for (int i = 0; i < table.Count; i++)
         {
             checkbit = (checkbit + 1) % 2;
@@ -82,7 +91,8 @@ public class BoardManager : MonoBehaviour
                     throw new Exception();
                 }
                 last = table[i][j];
-                board[i][last] = Instantiate(cellPrefab,boardGO.transform);
+                board[i][last] = Instantiate(cellPrefab);
+                board[i][last].GetComponent<NetworkObject>().Spawn();
                 board[i][last].neighbors = new List<HexCell>()
                 {
                     null,null,null,null,null,null
@@ -99,6 +109,7 @@ public class BoardManager : MonoBehaviour
                         board[i + DirVec[k][0]][last + DirVec[k][1]].neighbors[(k + 3) % 6] = board[i][last];
                     }
                 }
+                
             }
         }
 
